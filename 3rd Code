@@ -1,0 +1,42 @@
+200. Number of Islands
+
+
+class Solution {
+    public int numIslands(char[][] a) {
+         int ans=0;
+        boolean v[][]=new boolean[a.length][a[0].length];
+        for(int i=0;i<a.length;i++){
+            for(int j=0;j<a[i].length;j++){
+                if(a[i][j]=='1'&&v[i][j]==false){
+                    drawTree(a,i,j,v);
+                    ans++;
+                }
+                
+            }
+        }
+        return ans;
+        
+    }
+    
+    
+    
+    //" We can use same code for 8 directions by just removing the comments " 
+    
+    
+    
+    public void drawTree(char [][]a,int i,int j,boolean [][]v){
+        if(i<0||j<0||i>=a.length||j>=a[0].length||a[i][j]=='0'||v[i][j]==true){
+            return;
+        }
+        v[i][j]=true;
+       // drawTree(a,i-1,j-1,v);
+        drawTree(a,i-1,j,v);
+        drawTree(a,i+1,j,v);
+        drawTree(a,i,j+1,v);
+        drawTree(a,i,j-1,v);
+       // drawTree(a,i+1,j-1,v);
+       // drawTree(a,i+1,j,v);
+       // drawTree(a,i+1,j+1,v);
+        
+    }
+}
